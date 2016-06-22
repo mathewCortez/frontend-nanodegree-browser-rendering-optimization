@@ -421,7 +421,10 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
   // Iterates through pizza elements on the page and changes their widths
   //changes made here came from the web performance video from the lesson
   function changePizzaSizes(size) {
@@ -488,6 +491,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
+<<<<<<< HEAD
   var scrollTop = (document.body.scrollTop / 1250);
   var items = document.getElementsByClassName('mover');
   var i;
@@ -501,6 +505,14 @@ function updatePositions() {
   for (i = 0; items.length; i++){
       phase = pizzaArr[i % 5];
       items[i].style.transform = "translateX(" + 100 * phase + "px)";
+=======
+
+  var items = document.getElementsByClassName('mover');
+  var scrollTop = (document.body.scrollTop / 1250);
+  for (var i = 0; i < items.length; i++) {
+    var phase = Math.sin(scrollTop + (i % 5));
+    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+>>>>>>> origin/master
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
