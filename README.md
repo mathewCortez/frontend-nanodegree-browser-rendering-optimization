@@ -1,8 +1,14 @@
-## Website Performance Optimization portfolio project
+###HTML and CSS Optimization
+ 
+The first thing I did to optimize the HMTL files was to compress all of the images.  Most were a good size for the website but the image from pizza.html needed to be resized and compressed for the mini picture in the index.html and the larger image in pizza.html.  I needed to make a copy of the pizza image and put it in the img folder so I can make it a smaller size than the image that would be used when pizza.html was opened.  The next thing I did to optimize the website was to save all the linked images to the img folder instead of using a URL to access the image, and once I downloaded these images I compressed them like I did the others.  Then I looked at the CSS files and I saw that there were a few calls to tags within tags which needed to be changed.  The way I did this was too go back into the HTML and add classes to all the HTML tags that needed to be called in CSS.  I did this for all of the HTML files and then referenced the classes in the CSS instead of calling tags within tags.  The next step I took towards optimizing the website was to inline both of the CSS files in all of the HTML files because they were both small and did not need to be in there own file.  Naturally I had to delete the lines of code the linked the CSS files I deleted.  After this I looked at the JavaScript file and noticed it was small also, so I minified it and inlined it into the html files.  I also had to take out the Google analytics code from the html files because it was causing problems for me, but I am not sure why.  The website was pretty well optimized at this point but I wanted to make a few more changes.  The first I noticed was a missing </div> tag towards the bottom of the code which I added in.  I am not sure that this helped optimize index.html, but I thought it was a good addition.  Then I minified the html files and moved onto the pizza.html page to fix the JavaScript. 
+ 
+###JAVASCRIPT Optimizaiton
+ 
+To begin optimizing this code I need to record some timelines in chrome dev tools to see where in the code I needed to start my work.  The problems were the on scroll functionality and the pizza size changing slider.  I remembered this was the same problem that the instructors went over during the videos, so I knew what to do.  The first thing I did was to get ride of the determineDx function because I remember it was more complicated than it needed to be.  Then I made it so when the slider was in position 1, 2, or 3 it would change the width of the pizza image which is a simpler way of changing the size of the pizza image.  The change in width would become a change in percent width when I actually changed the style instead of a pixel width change.  To make the changes to all of the pizzas I needed to I needed to call them and the current way was using querySelectorAll but getElementsByClassName was a better way of doing this for this situation, so I made that switch and put that information in a variable outside the loop.  Then I had a loop that cycled though all of the pizzas and make the style changes.  Fixing the slider had a lot of similar problems.  I pulled the variables outside of the so it was not doing difficult calculations every time the loop ran and I made the getElementsByClassName change again.  The big change her was making it so the style change was a translation because that did not affect as many areas of the DOM and would be a performance booster.  This got the frame rate down to where I wanted it but all of the pizzas were too close together so I have to make a change to bottom of the file where the pizzas were being created and placed on the screen.  I changed style.basicLeft to style.left because I did not know what basic left was and this fixed the problem.  The last thing I did was to change the number of pizzas being generated so the pizzas being created were based on the size of the screen the webpage was being viewed on.
+ 
+###Running the Project
 
-Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
-
-To get started, check out the repository and inspect the code.
+If you would like to run my project you could download the files and run it in your browser, or you could go to the index.html file on github, copy the URL and paste it after this: https://htmlpreview.github.io/? or just go to this link https://htmlpreview.github.io/?https://github.com/mathewCortez/frontend-nanodegree-browser-rendering-optimization/blob/master/index.html.  You can then go to dev tools if you are viewing the page on chrome and see how the website preforms in terms of FPS or you could follow the instructions below to see the PageSpeed Scores.
 
 ### Getting started
 
@@ -30,26 +36,7 @@ Some useful tips to help you get started:
 
 Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
 
-####Part 2: Optimize Frames per Second in pizza.html
-
-To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
 
 You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
 
-### Optimization Tips and Tricks
-* [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
-* [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
-* [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
-* [Avoiding Rendering Blocking CSS](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css.html "render blocking css")
-* [Optimizing JavaScript](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript.html "javascript")
-* [Measuring with Navigation Timing](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp.html "nav timing api"). We didn't cover the Navigation Timing API in the first two lessons but it's an incredibly useful tool for automated page profiling. I highly recommend reading.
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/eliminate-downloads.html">The fewer the downloads, the better</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer.html">Reduce the size of text</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization.html">Optimize images</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching.html">HTTP caching</a>
 
-### Customization with Bootstrap
-The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.
-
-* <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
-* <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>

@@ -421,10 +421,7 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
   // Iterates through pizza elements on the page and changes their widths
   //changes made here came from the web performance video from the lesson
   function changePizzaSizes(size) {
@@ -491,30 +488,16 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-<<<<<<< HEAD
   var scrollTop = (document.body.scrollTop / 1250);
   var items = document.getElementsByClassName('mover');
   var i;
-  var pizzaArr = [];
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < items.length; i++) {
     var phase = Math.sin(scrollTop + (i % 5));
-    pizzaArr.push(phase);
-//    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-//    items[i].style.transform = "translateX(" + 100 * phase + "px)";
-  }
-  for (i = 0; items.length; i++){
-      phase = pizzaArr[i % 5];
-      items[i].style.transform = "translateX(" + 100 * phase + "px)";
-=======
-
-  var items = document.getElementsByClassName('mover');
-  var scrollTop = (document.body.scrollTop / 1250);
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin(scrollTop + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
->>>>>>> origin/master
+   // in the forum I heard that I should push the values of phase into an array and then use the array to make the translation but I got this to work and the last 10 frames take less than a 1ms to load so I left it this way.
+   items[i].style.transform = "translateX(" + 100 * phase + "px)";
   }
 
+  // User Timing API to the rescue again. Seriously, it's worth learning.
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
   window.performance.mark("mark_end_frame");
@@ -530,15 +513,20 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
+    //pulled variables out of loop and optimized the pizza painter so it paints pizzas based on the size of the screen.  This idea came from the Udacity forum.
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
+  var windowHeight = window.screen.height;
+  var elem;
+  var pizzas = windowHeight / s * cols;
+  for (var i = 0; i < pizzas; i++) {
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
+//  used style.left instead of basicLeft because I did not know what that did
+    elem.style.left = ((i % cols) * s) + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
