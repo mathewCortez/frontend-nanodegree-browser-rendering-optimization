@@ -421,10 +421,7 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
   // Iterates through pizza elements on the page and changes their widths
   //changes made here came from the web performance video from the lesson
   function changePizzaSizes(size) {
@@ -494,22 +491,11 @@ function updatePositions() {
   var scrollTop = (document.body.scrollTop / 1250);
   var items = document.getElementsByClassName('mover');
   var i;
-<<<<<<< HEAD
   for (i = 0; i < items.length; i++) {
     var phase = Math.sin(scrollTop + (i % 5));
    // in the forum I heard that I should push the values of phase into an array and then use the array to make the translation but I got this to work and the last 10 frames take less than a 1ms to load so I left it this way.
    items[i].style.transform = "translateX(" + 100 * phase + "px)";
   }
-=======
-  var pizzaArr = [];
-  for (i = 0; i < items.length; i++) {
-    var phase = Math.sin(scrollTop + (i % 5));
-//    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-    items[i].style.transform = "translateX(" + 100 * phase + "px)";
-  }
-
->>>>>>> origin/master
-
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -530,26 +516,16 @@ document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
   var windowHeight = window.screen.height;
-<<<<<<< HEAD
   var elem;
   var pizzas = windowHeight / s * cols;
   for (var i = 0; i < pizzas; i++) {
     elem = document.createElement('img');
-=======
-  var pizzas = windowHeight/ s * cols;
-  for (var i = 0; i < pizza; i++) {
-    var elem = document.createElement('img');
->>>>>>> origin/master
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-<<<<<<< HEAD
 //  used style.left instead of basicLeft because I did not know what that did
     elem.style.left = ((i % cols) * s) + 'px';
-=======
-    elem.basicLeft = ((i % cols) * s) + 'px';
->>>>>>> origin/master
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
